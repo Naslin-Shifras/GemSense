@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #0D0D1B;
+    --bg-card: #13131F;
+    --bg-input: #1A1A2E;
+    --border: #2A2A3F;
+    --purple: #7C3AED;
+    --purple-light: #9F67FF;
+  }
+
+  body {
+    background-color: #0D0D1B;
+    color: #E8E8F0;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  /* Cards */
+  .card {
+    background-color: #13131F;
+    border: 1px solid #2A2A3F;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  /* Inputs */
+  .input-field {
+    @apply w-full bg-brand-bg-input border border-brand-border rounded-lg px-4 py-3 text-brand-text 
+           focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple 
+           transition-all placeholder:text-brand-muted text-sm;
+  }
+
+  /* Primary Purple Button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold
+           text-white transition-all duration-300 cursor-pointer text-sm relative overflow-hidden
+           bg-brand-purple disabled:opacity-50 disabled:cursor-not-allowed;
+    box-shadow: 0 4px 15px -3px rgba(124, 58, 237, 0.4);
+  }
+  .btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px -5px rgba(124, 58, 237, 0.6), 0 0 10px rgba(159, 103, 255, 0.4);
+    background-color: #6D28D9;
+  }
+  /* Sweep shine effect on primary button */
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  .btn-primary:hover::after {
+    left: 100%;
+  }
+
+  /* Outlined / Ghost Button */
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold
+           text-white border border-brand-border hover:border-brand-purple hover:text-brand-purple-light
+           transition-all duration-300 cursor-pointer text-sm bg-transparent;
+  }
+  .btn-outline:hover {
+    transform: translateY(-2px);
+    box-shadow: inset 0 0 15px rgba(124, 58, 237, 0.1), 0 4px 15px rgba(124, 58, 237, 0.2);
+  }
+
+  /* Nav links */
+  .nav-link {
+    @apply text-brand-muted hover:text-white transition-all duration-300 text-sm font-medium relative py-1;
+  }
+  .nav-link:hover {
+    transform: translateY(-1px);
+    text-shadow: 0 0 8px rgba(159, 103, 255, 0.5);
+  }
+  
+  /* Section label pill */
+  .pill-badge {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium
+           border border-brand-border text-brand-muted bg-brand-bg-card transition-all duration-300;
+  }
+  .pill-badge:hover {
+    border-color: rgba(124, 58, 237, 0.5);
+    background-color: rgba(124, 58, 237, 0.05);
+    box-shadow: 0 0 15px rgba(124, 58, 237, 0.15);
+  }
+
+  /* Custom Hover Utility Classes */
+  .hover-glow {
+    transition: all 0.3s ease;
+  }
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+    border-color: rgba(124, 58, 237, 0.6);
+    transform: translateY(-3px) scale(1.05);
+  }
+
+  .hover-float {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .hover-float:hover {
+    transform: translateY(-5px);
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0D0D1B; }
+::-webkit-scrollbar-thumb { background: #2A2A3F; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #3A3A55; }
